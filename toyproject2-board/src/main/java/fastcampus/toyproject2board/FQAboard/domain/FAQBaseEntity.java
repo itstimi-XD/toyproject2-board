@@ -1,4 +1,4 @@
-package FQAboard.domain;
+package fastcampus.toyproject2board.FQAboard.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

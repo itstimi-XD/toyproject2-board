@@ -1,13 +1,19 @@
-package FQAboard.domain;
+package fastcampus.toyproject2board.FQAboard.domain;
+
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
-public class FQAboard extends FAQBaseEntity{
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class FAQboard extends FAQBaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bno;
+    private Long tno;
 
     @Column(length = 100,nullable = false)
     private String FAQtype;
