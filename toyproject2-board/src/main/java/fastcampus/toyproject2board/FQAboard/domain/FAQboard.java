@@ -27,5 +27,9 @@ public class FAQboard extends FAQBaseEntity{
     @Column(length = 250,nullable = false)
     private String id;
 
+    public void change(String title,String content){
+        this.title=title;
+        this.content=content;
+    }
 
 }
