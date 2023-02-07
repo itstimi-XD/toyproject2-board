@@ -1,4 +1,4 @@
-package fastcampus.toyproject2board.reposistory;
+package fastcampus.toyproject2board.FAQboard.reposistory;
 
 
 import fastcampus.toyproject2board.FQAboard.domain.FAQboard;
