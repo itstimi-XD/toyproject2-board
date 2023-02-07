@@ -33,4 +33,17 @@ public class FAQboardServiceImpl implements FAQboardService{
         FAQboardDTO faQboardDTO = modelMapper.map(faQboard,FAQboardDTO.class);
         return faQboardDTO;
     }
+
+    @Override
+    public void modify(FAQboardDTO faQboardDTO) {
+        Optional<FAQboard> result = faqBoardRepository.findById(faQboardDTO.getTno());
+        FAQboard faQboard = result.orElseThrow();
+        faQboard.change(faQboardDTO.getTitle(),faQboardDTO.getContent());
+        faqBoardRepository.save(faQboard);
+    }
+
+    @Override
+    public void remove(Long tno) {
+        faqBoardRepository.deleteById(tno);
+    }
 }

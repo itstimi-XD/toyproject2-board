@@ -30,4 +30,19 @@ public class FAQboardServiceTest {
         FAQboardDTO faQboardDTO =faQboardService.readOne(11L);
         log.info(faQboardDTO);
     }
+    @Test
+    public void testModify(){
+        FAQboardDTO faQboardDTO = FAQboardDTO.builder()
+                .tno(9L)
+                .FAQtype("cancle")
+                .title("ModifyTest")
+                .content("ModifyTest")
+                .id("ModifyTest")
+                .build();
+        faQboardService.modify(faQboardDTO);
+    }
+    @Test
+    public void testRemove(){
+        faQboardService.remove(8L);
+    }
 }
