@@ -25,4 +25,9 @@ public class FAQboardServiceTest {
         Long tno = faQboardService.register(faQboardDTO);
         log.info("tno: "+tno);
     }
+    @Test
+    public void testReadOne(){
+        FAQboardDTO faQboardDTO =faQboardService.readOne(11L);
+        log.info(faQboardDTO);
+    }
 }

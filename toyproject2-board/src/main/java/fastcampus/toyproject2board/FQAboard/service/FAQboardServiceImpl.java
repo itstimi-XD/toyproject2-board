@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -22,5 +24,13 @@ public class FAQboardServiceImpl implements FAQboardService{
         FAQboard faQboard = modelMapper.map(faQboardDTO,FAQboard.class);
         Long tno = faqBoardRepository.save(faQboard).getTno();
         return tno;
+    }
+
+    @Override
+    public FAQboardDTO readOne(Long tno) {
+        Optional<FAQboard> result = faqBoardRepository.findById(tno);
+        FAQboard faQboard = result.orElseThrow();
+        FAQboardDTO faQboardDTO = modelMapper.map(faQboard,FAQboardDTO.class);
+        return faQboardDTO;
     }
 }
