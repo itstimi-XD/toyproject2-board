@@ -40,12 +40,7 @@
       </div>
 
     </div>
-
-
-
-
   </form>
-
 </div>
 <script layout:fragment="script" th:inline="javascript">
   const errors = [[${errors}]]
@@ -55,11 +50,6 @@
     errorMsg += '에러 발생 \n'
     history.replaceState({},null,null)
     alert(errorMsg)
-  }
-
-  const result= [[${result}]]
-  if(result){
-    alert('저장되었습니다. \n')
   }
 
 </script>

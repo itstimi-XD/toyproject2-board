@@ -30,14 +30,25 @@
                 <div class="card card-body">
                     <li>내용 : [[${dto.content}]]</li>
                     <li>작성자 : [[${dto.id}]]</li>
+                    <button type="button" class="btn btn-danger removeBtn">삭제</button>
                 </div>
             </div>
         </th:block>
     </ul>
 </div>
 
-<button type="button" class="btn btn-light">등록하기</button>
+<div class="my-4">
+    <div class="float-end">
+        <a href="/FAQ/board/register" class="btn btn-primary">등록하기</a>
+    </div>
+</div>
 
+<script layout:fragment="script" th:inline="javascript">
+    const result= [[${result}]]
+    if(result){
+        alert('저장되었습니다. \n')
+    }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>

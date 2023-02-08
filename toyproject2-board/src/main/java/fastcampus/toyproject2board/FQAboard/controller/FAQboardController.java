@@ -47,4 +47,11 @@ public class FAQboardController {
         redirectAttributes.addFlashAttribute("result",tno);
         return "redirect:/FAQ/board/list";
     }
+    @PostMapping("/remove")
+    public String remove(Long tno, RedirectAttributes redirectAttributes){
+        log.info("remove post.."+tno);
+        faQboardService.remove(tno);
+        redirectAttributes.addFlashAttribute("result","removed");
+        return "redirect:/FAQ/board/list";
+    }
 }
