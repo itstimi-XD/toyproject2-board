@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<h1>FAQ</h1>
+<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+    <input type="radio" class="btn-check" name="faqtype" id="전체" value="전체"autocomplete="off" checked>
+    <label class="btn btn-outline-primary" for="전체">전체</label>
+
+    <input type="radio" class="btn-check" name="faqtype" id="결제/취소" value="결제/취소" autocomplete="off">
+    <label class="btn btn-outline-primary" for="결제/취소">결제/취소</label>
+
+    <input type="radio" class="btn-check" name="faqtype" id="이용문의" value="이용문의" autocomplete="off">
+    <label class="btn btn-outline-primary" for="이용문의">이용문의</label>
+
+    <input type="radio" class="btn-check" name="faqtype" id="기타문의" value="기타문의" autocomplete="off">
+    <label class="btn btn-outline-primary" for="기타문의">기타문의</label>
+
+
+</div>
+<div>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <input type="submit" class="btn btn-primary" name="faqtype" value="전체">전체</input>
+        <button type="submit" class="btn btn-primary" name="faqtype" value="결제/취소">결제/취소</button>
+        <button type="submit" class="btn btn-primary" name="faqtype" value="이용문의">이용문의</button>
+        <button type="submit" class="btn btn-primary" name="faqtype" value="기타문의">기타문의</button>
+    </div>
+</div>
+<div>
+    <ul>
+        <th:block th:each="dto:${DTOList}">
+            <p>
+                <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#${dto.tno}" aria-expanded="false" aria-controls="[[${dto.tno}]]">
+
+                    <li>([[${dto.FAQtype}]])  [[${dto.title}]]</li>
+                </button>
+            </p>
+            <div class="collapse" id="${dto.tno}">
+                <div class="card card-body">
+                    <li>내용 : [[${dto.content}]]</li>
+                    <li>작성자 : [[${dto.id}]]</li>
+                </div>
+            </div>
+        </th:block>
+    </ul>
+</div>
+
+
+<button type="button" class="btn btn-light">등록하기</button>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

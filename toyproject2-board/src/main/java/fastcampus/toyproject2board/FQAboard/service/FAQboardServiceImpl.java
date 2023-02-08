@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +26,16 @@ public class FAQboardServiceImpl implements FAQboardService{
         FAQboard faQboard = modelMapper.map(faQboardDTO,FAQboard.class);
         Long tno = faqBoardRepository.save(faQboard).getTno();
         return tno;
+    }
+
+    @Override
+    public List<FAQboardDTO> readAll() {
+        List<FAQboard> faQboardList = faqBoardRepository.findAll();
+        List<FAQboardDTO> faQboardDTOList = new ArrayList<>();
+        for (int i = 0; i<faQboardList.size();i++){
+            faQboardDTOList.add(modelMapper.map(faQboardList.get(i),FAQboardDTO.class));
+        }
+        return faQboardDTOList;
     }
 
     @Override
@@ -46,4 +58,5 @@ public class FAQboardServiceImpl implements FAQboardService{
     public void remove(Long tno) {
         faqBoardRepository.deleteById(tno);
     }
+
 }

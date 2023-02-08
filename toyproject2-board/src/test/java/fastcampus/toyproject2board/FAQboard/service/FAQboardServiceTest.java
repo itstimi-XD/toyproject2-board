@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 @Log4j2
 public class FAQboardServiceTest {
@@ -17,13 +19,18 @@ public class FAQboardServiceTest {
     public void testRegister(){
         log.info(faQboardService.getClass().getName());
         FAQboardDTO faQboardDTO = FAQboardDTO.builder()
-                .FAQtype("cancle")
+                .FAQtype("결제/취소")
                 .title("RegisterTest")
                 .content("RegisterTest")
                 .id("RegisterTest")
                 .build();
         Long tno = faQboardService.register(faQboardDTO);
         log.info("tno: "+tno);
+    }
+    @Test
+    public void testReadAll(){
+        List<FAQboardDTO> faQboardDTOList =faQboardService.readAll();
+        log.info(faQboardDTOList);
     }
     @Test
     public void testReadOne(){
@@ -34,7 +41,7 @@ public class FAQboardServiceTest {
     public void testModify(){
         FAQboardDTO faQboardDTO = FAQboardDTO.builder()
                 .tno(9L)
-                .FAQtype("cancle")
+                .FAQtype("이용문의")
                 .title("ModifyTest")
                 .content("ModifyTest")
                 .id("ModifyTest")

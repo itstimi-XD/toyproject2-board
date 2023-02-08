@@ -21,7 +21,7 @@ public class FAQboardRepositoryTest {
     public void testInsert(){
         IntStream.rangeClosed(1,10).forEach(i ->{
             FAQboard faQboard = FAQboard.builder()
-                    .FAQtype("cancle")
+                    .FAQtype("결제/취소")
                     .title("title..."+i)
                     .content("content..."+i)
                     .id("user"+i)
