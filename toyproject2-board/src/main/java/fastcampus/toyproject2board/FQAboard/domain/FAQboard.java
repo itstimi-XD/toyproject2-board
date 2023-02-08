@@ -21,7 +21,7 @@ public class FAQboard extends FAQBaseEntity{
     @Column(length = 250,nullable = false)
     private String title;
 
-    @Column(length = 5000)
+    @Column(length = 5000,nullable = false)
     private String content;
 
     @Column(length = 250,nullable = false)

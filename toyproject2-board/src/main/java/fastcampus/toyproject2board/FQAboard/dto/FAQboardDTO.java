@@ -10,6 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,13 +22,14 @@ import java.time.LocalDateTime;
 public class FAQboardDTO {
 
     private Long tno;
-
+    @NotEmpty
     private String FAQtype;
-
+    @NotEmpty
+    @Size(min = 2, max = 50)
     private String title;
-
+    @NotEmpty
     private String content;
-
+    @NotEmpty
     private String id;
 
     private LocalDate regDate;
