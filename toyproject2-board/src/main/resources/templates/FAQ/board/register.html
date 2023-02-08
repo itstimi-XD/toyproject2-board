@@ -1,10 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FAQ등록</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
 </head>
 <body>
-$END$
+
+<div>
+  <form action="/FAQ/board/register" method="post">
+    <h1>FAQ</h1>
+    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+      <input type="radio" class="btn-check" name="FAQtype" id="결제/취소" value="결제/취소" autocomplete="off" checked>
+      <label class="btn btn-outline-primary" for="결제/취소">결제/취소</label>
+
+      <input type="radio" class="btn-check" name="FAQtype" id="이용문의" value="이용문의" autocomplete="off">
+      <label class="btn btn-outline-primary" for="이용문의">이용문의</label>
+
+      <input type="radio" class="btn-check" name="FAQtype" id="기타문의" value="기타문의" autocomplete="off">
+      <label class="btn btn-outline-primary" for="기타문의">기타문의</label>
+
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" name="title" class="form-control" placeholder="제목을 입력하세요(2~50)">
+    </div>
+
+    <div class="input-group mb-3">
+      <textarea  name="content" class="form-control col-sm-5" rows="5" placeholder="문의내용을 입력하세요(10~500)"></textarea>
+    </div>
+    <div class="input-group mb-3">
+      <input type="text" name="id" class="form-control" placeholder="id 나중에 추가작업필요">
+    </div>
+    <div class="my-4">
+      <div class="float-end">
+        <button type="submit" class="btn btn-primary">등록</button>
+        <button type="reset" class="btn btn-secondary">리셋</button>
+      </div>
+
+    </div>
+
+
+
+
+  </form>
+
+</div>
+
+
+<script layout:fragment="stript" th:inline="javascript">
+  const errors = [[${errors}]]
+  console.log(errors)
+  let errorMsg =''
+  if(errors){
+    errorMsg += '에러 발생 \n'
+    alert(errorMsg)
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

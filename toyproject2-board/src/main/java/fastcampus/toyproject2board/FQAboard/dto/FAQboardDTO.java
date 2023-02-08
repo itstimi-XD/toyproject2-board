@@ -28,6 +28,7 @@ public class FAQboardDTO {
     @Size(min = 2, max = 50)
     private String title;
     @NotEmpty
+    @Size(min = 10, max = 500)
     private String content;
     @NotEmpty
     private String id;

@@ -40,11 +40,11 @@ public class FAQboardController {
         if(bindingResult.hasErrors()){
             log.info("has error.......");
             redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
-            return "redirect:/FAQ/board/register"
+            return "redirect:/FAQ/board/register";
         }
         log.info(faQboardDTO);
         Long tno = faQboardService.register(faQboardDTO);
         redirectAttributes.addFlashAttribute("result",tno);
-        return "redirect:/FAQ/board/list"
+        return "redirect:/FAQ/board/list";
     }
 }
