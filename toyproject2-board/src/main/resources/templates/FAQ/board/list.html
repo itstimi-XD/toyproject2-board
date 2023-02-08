@@ -21,12 +21,12 @@
     <ul>
         <th:block th:each="dto:${DTOList}">
             <p>
-                <button class="btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#${dto.tno}" aria-expanded="false" aria-controls="[[${dto.tno}]]">
+                <button class="btn btn-light" type="button" data-bs-toggle="collapse" th:attr="data-bs-target='#'+${dto.tno}" aria-expanded="false" aria-controls="[[${dto.tno}]]">
 
                     <li>([[${dto.FAQtype}]])  [[${dto.title}]]</li>
                 </button>
             </p>
-            <div class="collapse" id="${dto.tno}">
+            <div class="collapse" th:attr="id=${dto.tno}">
                 <div class="card card-body">
                     <li>내용 : [[${dto.content}]]</li>
                     <li>작성자 : [[${dto.id}]]</li>
