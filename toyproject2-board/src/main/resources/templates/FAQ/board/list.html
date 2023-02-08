@@ -30,7 +30,8 @@
                 <div class="card card-body">
                     <li>내용 : [[${dto.content}]]</li>
                     <li>작성자 : [[${dto.id}]]</li>
-                    <button type="button" class="btn btn-danger removeBtn">삭제</button>
+                    <a th:href="|@{/FAQ/board/modify}?tno=${dto.tno}|" class="btn btn-secondary">수정</a>
+                    <button type="button"  class="btn btn-danger removeBtn">삭제</button>
                 </div>
             </div>
         </th:block>

@@ -54,4 +54,23 @@ public class FAQboardController {
         redirectAttributes.addFlashAttribute("result","removed");
         return "redirect:/FAQ/board/list";
     }
+    @GetMapping("/modify")
+    public void read(Long tno, Model model){
+        FAQboardDTO faQboardDTO = faQboardService.readOne(tno);
+        log.info(tno);
+        model.addAttribute("dto",faQboardDTO);
+    }
+    @PostMapping("/modify")
+    public String modify(@Valid FAQboardDTO faQboardDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
+        log.info("board modify post.....");
+        if(bindingResult.hasErrors()){
+            log.info("has error.......");
+            redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
+            return "redirect:/FAQ/board/modify";
+        }
+        faQboardService.modify(faQboardDTO);
+        redirectAttributes.addFlashAttribute("result","modified");
+        redirectAttributes.addAttribute("tno",faQboardDTO.getTno());
+        return "redirect:/FAQ/board/list";
+    }
 }
