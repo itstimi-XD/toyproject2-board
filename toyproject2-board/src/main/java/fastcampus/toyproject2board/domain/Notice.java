@@ -25,9 +25,8 @@ import java.util.Set;
 })
 
 
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Notice {
+public class Notice extends AuditingFields{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,13 +39,6 @@ public class Notice {
     @OneToMany(mappedBy = "notice", cascade = CascadeType.ALL)
     @ToString.Exclude
     private final Set<NoticeComment> noticeComments = new LinkedHashSet<>();
-
-
-    @CreatedDate        @Column(nullable = false)               private LocalDateTime createdAt; // 생성일시
-    @CreatedBy          @Column(nullable = false, length = 100) private String createdBy; // 생성자
-    @LastModifiedDate   @Column(nullable = false)               private LocalDateTime modifiedAt; //수정일시
-    @LastModifiedBy     @Column(nullable = false, length = 100) private String modifiedBy; // 수정자
-
 
     protected Notice() {}
 

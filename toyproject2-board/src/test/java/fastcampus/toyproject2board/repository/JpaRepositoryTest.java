@@ -32,7 +32,7 @@ class JpaRepositoryTest {
     void select_테스트(){
         List<Notice> notices = noticeRepository.findAll();
 
-        assertThat(notices).isNotNull().hasSize(0);
+        assertThat(notices).isNotNull().hasSize(1);
     }
 
     @Test
@@ -46,7 +46,6 @@ class JpaRepositoryTest {
 
     @Test
     void Updating_테스트(){
-        noticeRepository.save(Notice.of("new title", "new content"));
         Notice notice = noticeRepository.findById(1L).orElseThrow();
         String updatedTitle = "updated title";
         notice.setTitle(updatedTitle);
@@ -58,7 +57,6 @@ class JpaRepositoryTest {
 
     @Test
     void Delete_테스트(){
-        noticeRepository.save(Notice.of("new title", "new content"));
 
         Notice notice = noticeRepository.findById(1L).orElseThrow();
         long previousNoticeCount = noticeRepository.count();
