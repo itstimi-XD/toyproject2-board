@@ -44,14 +44,14 @@ public class FAQboardController {
         }
         log.info(faQboardDTO);
         Long tno = faQboardService.register(faQboardDTO);
-        redirectAttributes.addFlashAttribute("result",tno);
+        redirectAttributes.addFlashAttribute("result","저장되었습니다.");
         return "redirect:/FAQ/board/list";
     }
     @PostMapping("/remove")
     public String remove(Long tno, RedirectAttributes redirectAttributes){
         log.info("remove post.."+tno);
         faQboardService.remove(tno);
-        redirectAttributes.addFlashAttribute("result","removed");
+        redirectAttributes.addFlashAttribute("result","삭제되었습니다");
         return "redirect:/FAQ/board/list";
     }
     @GetMapping("/modify")
@@ -69,7 +69,7 @@ public class FAQboardController {
             return "redirect:/FAQ/board/modify?tno="+faQboardDTO.getTno();
         }
         faQboardService.modify(faQboardDTO);
-        redirectAttributes.addFlashAttribute("result","modified");
+        redirectAttributes.addFlashAttribute("result","수정되었습니다.");
         redirectAttributes.addAttribute("tno",faQboardDTO.getTno());
         return "redirect:/FAQ/board/list";
     }

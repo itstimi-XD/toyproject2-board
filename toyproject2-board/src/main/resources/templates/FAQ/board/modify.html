@@ -36,7 +36,8 @@
         </div>
         <div class="my-4">
             <div class="float-end">
-                <button type="submit" class="btn btn-primary">등록</button>
+                <button type="submit" class="btn btn-primary">수정</button>
+                <button type="button"  class="btn btn-danger removeBtn">삭제</button>
                 <a href="/FAQ/board/list" class="btn btn-secondary">취소</a>
             </div>
 
@@ -52,6 +53,14 @@
         history.replaceState({},null,null)
         alert(errorMsg)
     }
+    const fromObj = document.querySelector("#f1")
+    document.querySelector(".removeBtn").addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+        fromObj.action ='/FAQ/board/remove'
+        fromObj.method = 'post'
+        fromObj.submit()
+    },false)
 
 
 </script>

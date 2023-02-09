@@ -31,7 +31,6 @@
                     <li>내용 : [[${dto.content}]]</li>
                     <li>작성자 : [[${dto.id}]]</li>
                     <a th:href="|@{/FAQ/board/modify}?tno=${dto.tno}|" class="btn btn-secondary">수정</a>
-                    <button type="button"  class="btn btn-danger removeBtn">삭제</button>
                 </div>
             </div>
         </th:block>
@@ -47,7 +46,7 @@
 <script layout:fragment="script" th:inline="javascript">
     const result= [[${result}]]
     if(result){
-        alert('저장되었습니다. \n')
+        alert(result)
     }
 </script>
 
