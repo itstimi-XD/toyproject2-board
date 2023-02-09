@@ -1,11 +1,14 @@
 package fastcampus.toyproject2board.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import fastcampus.toyproject2board.dto.MemberDTO;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @Table(name = "member_table")
@@ -23,4 +26,12 @@ public class MemberEntity {
     @Column
     private String memberName;
 
+    public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
+        return MemberEntity.builder()
+                .memberId(memberDTO.getMemberId())
+                .memberEmail(memberDTO.getMemberEmail())
+                .memberPassword(memberDTO.getMemberPassword())
+                .memberName(memberDTO.getMemberName())
+                .build();
+    }
 }
