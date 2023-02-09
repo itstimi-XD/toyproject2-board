@@ -21,13 +21,13 @@ class NoticeControllerTest {
     public NoticeControllerTest(@Autowired MockMvc mvc) {
         this.mvc = mvc;
     }
-    @Disabled("구현 중")
+
     @Test
     public void View_Get_게시글_리스트_페이지_정상호출() throws Exception {
 
         mvc.perform(get("/notices"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("notices/index"))
                 .andExpect(model().attributeExists("notices"));
     }
@@ -37,7 +37,7 @@ class NoticeControllerTest {
 
         mvc.perform(get("/notices/1"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("notices/detail"))
                 .andExpect(model().attributeExists("notice"))
                 .andExpect(model().attributeExists("noticeComments"));
@@ -48,7 +48,7 @@ class NoticeControllerTest {
 
         mvc.perform(get("/notices/search"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.TEXT_HTML))
+                .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))
                 .andExpect(view().name("notices/search"));
     }
 
