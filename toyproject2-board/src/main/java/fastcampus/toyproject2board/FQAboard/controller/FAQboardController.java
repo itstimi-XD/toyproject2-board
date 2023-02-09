@@ -23,10 +23,11 @@ import java.util.List;
 public class FAQboardController {
     private final FAQboardService faQboardService;
     @GetMapping("/list")
-    public void list(Model model){
+    public void list(Model model, String type){
         List<FAQboardDTO> faQboardDTOList = faQboardService.readAll();
         log.info(faQboardDTOList);
         model.addAttribute("DTOList",faQboardDTOList);
+        model.addAttribute("type",type);
     }
 
     @GetMapping("/register")
