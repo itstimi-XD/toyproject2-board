@@ -46,7 +46,7 @@ public class FAQboardRepositoryTest {
         Long tno =5L;
         Optional<FAQboard> result = faqBoardRepository.findById(tno);
         FAQboard faQboard = result.orElseThrow();
-        faQboard.change("update title 5","update content5");
+        faQboard.change("기타문의","update title 5","update content5");
         faqBoardRepository.save(faQboard);
         log.info(faQboard);
     }

@@ -50,7 +50,7 @@ public class FAQboardServiceImpl implements FAQboardService{
     public void modify(FAQboardDTO faQboardDTO) {
         Optional<FAQboard> result = faqBoardRepository.findById(faQboardDTO.getTno());
         FAQboard faQboard = result.orElseThrow();
-        faQboard.change(faQboardDTO.getTitle(),faQboardDTO.getContent());
+        faQboard.change(faQboardDTO.getFAQtype(),faQboardDTO.getTitle(),faQboardDTO.getContent());
         faqBoardRepository.save(faQboard);
     }
 

@@ -66,7 +66,7 @@ public class FAQboardController {
         if(bindingResult.hasErrors()){
             log.info("has error.......");
             redirectAttributes.addFlashAttribute("errors",bindingResult.getAllErrors());
-            return "redirect:/FAQ/board/modify";
+            return "redirect:/FAQ/board/modify?tno="+faQboardDTO.getTno();
         }
         faQboardService.modify(faQboardDTO);
         redirectAttributes.addFlashAttribute("result","modified");

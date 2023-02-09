@@ -11,18 +11,16 @@
 
 <div>
     <form th:action="@{/FAQ/board/modify}" method="post" id="f1">
+        <input type="hidden" name="tno" th:value="${dto.tno}">
         <h1>FAQ</h1>
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="FAQtype" id="결제/취소" value="결제/취소" autocomplete="off"
-                   th:if="${dto.FAQtype} == '결제/취소'"checked>
+            <input type="radio" class="btn-check" name="FAQtype" id="결제/취소" value="결제/취소" autocomplete="off" checked>
             <label class="btn btn-outline-primary" for="결제/취소">결제/취소</label>
 
-            <input type="radio" class="btn-check" name="FAQtype" id="이용문의" value="이용문의" autocomplete="off"
-                   th:if="${dto.FAQtype} == '이용문의'"checked>
+            <input type="radio" class="btn-check" name="FAQtype" id="이용문의" value="이용문의" autocomplete="off">
             <label class="btn btn-outline-primary" for="이용문의">이용문의</label>
 
-            <input type="radio" class="btn-check" name="FAQtype" id="기타문의" value="기타문의" autocomplete="off"
-                   th:if="${dto.FAQtype} == '기타문의'"checked>
+            <input type="radio" class="btn-check" name="FAQtype" id="기타문의" value="기타문의" autocomplete="off">
             <label class="btn btn-outline-primary" for="기타문의">기타문의</label>
 
         </div>
