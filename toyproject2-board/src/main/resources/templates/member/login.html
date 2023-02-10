@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>login</title>
 </head>
-<body>
+<body onload="init()">
 <form action="/member/login" method="post">
   이메일:<label>
     <input type="email" name="memberEmail" placeholder="이메일 입력해주세여">
@@ -14,5 +14,12 @@
 </label><br>
     <input type="submit" value="로그인">
 </form>
+<script>
+    const urlParams = new URL(location.href).searchParams;
+
+    const name = urlParams.get('msg');
+    if (name != null)
+        alert(name);
+</script>
 </body>
 </html>

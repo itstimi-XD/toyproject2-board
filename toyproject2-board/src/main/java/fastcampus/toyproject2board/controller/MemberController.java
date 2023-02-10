@@ -27,18 +27,20 @@ public class MemberController {
         log.info("login get.............");
     }
     @PostMapping("/login")
-    public String loginPost(@ModelAttribute MemberDTO memberDTO, HttpSession session, RedirectAttributes ra) {
+    public String loginPost(@ModelAttribute MemberDTO memberDTO, HttpSession session
+            , RedirectAttributes ra) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if(loginResult != null) {
             session.setAttribute("loginInfo",loginResult);
+            ra.addAttribute("msg", "login 성공!!!!!");
             return "redirect:/";
         }else {
-            session.setAttribute("msg", "login 실패!!!!!");
+            ra.addAttribute("msg", "login 실패!!!!!");
             return "redirect:/member/login";
         }
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginInfo");
         session.invalidate();
