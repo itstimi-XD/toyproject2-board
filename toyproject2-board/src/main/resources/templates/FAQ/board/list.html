@@ -33,7 +33,9 @@
                     <div class="card card-body">
                         <li>내용 : [[${dto.content}]]</li>
                         <li>작성자 : [[${dto.id}]]</li>
+                        <div class="my-4">
                         <a th:href="|@{/FAQ/board/modify}?tno=${dto.tno}|" class="btn btn-secondary">수정</a>
+                        </div>
                     </div>
                 </div>
             </div>
