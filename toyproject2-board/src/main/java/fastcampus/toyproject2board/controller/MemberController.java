@@ -82,6 +82,12 @@ public class MemberController {
     public String detail(@PathVariable Long id, Model model) {
         MemberDTO memberDTO = memberService.findById(id);
         model.addAttribute("member", memberDTO);
-        return "/member/list";
+        return "/member/read";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id,RedirectAttributes ra) {
+        memberService.delete(id);
+        ra.addFlashAttribute("msg","성공!!!!");
+        return "redirect:/member/list";
     }
 }
