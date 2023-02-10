@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<thlogic>
+  <attr sel="#header" th:replace="header :: header" />
+  <attr sel="#footer" th:replace="footer :: footer" />
+
+  <attr sel="#notice-main" th:object="${notice}">
+    <attr sel="#notice-header/h1" th:text="*{title}" />
+    <attr sel="#nickname" th:text="*{nickname}" />
+    <attr sel="#email" th:text="*{email}" />
+    <attr sel="#created-at" th:datetime="*{createdAt}" th:text="*{#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
+    <attr sel="#hashtag" th:text="*{hashtag}" />
+    <attr sel="#notice-content/pre" th:text="*{content}" />
+
+    <attr sel="#notice-buttons" th:if="${#authorization.expression('isAuthenticated()')} and *{userId} == ${#authentication.name}">
+      <attr sel="#delete-notice-form" th:action="'/notices/' + *{id} + '/delete'" th:method="post">
+        <attr sel="#update-notice" th:href="'/notices/' + *{id} + '/form'" />
+      </attr>
+    </attr>
+
+    <attr sel=".notice-id" th:name="noticeId" th:value="*{id}" />
+    <attr sel="#comment-form" th:action="@{/comments/new}" th:method="post">
+      <attr sel="#comment-textbox" th:name="content" />
+    </attr>
+
+    <attr sel="#notice-comments" th:remove="all-but-first">
+      <attr sel="li[0]" th:each="noticeComment : ${noticeComments}">
+        <attr sel="form" th:action="'/comments/' + ${noticeComment.id} + '/delete'" th:method="post">
+          <attr sel="div/strong" th:text="${noticeComment.nickname}" />
+          <attr sel="div/small/time" th:datetime="${noticeComment.createdAt}" th:text="${#temporals.format(noticeComment.createdAt, 'yyyy-MM-dd HH:mm:ss')}" />
+          <attr sel="div/p" th:text="${noticeComment.content}" />
+          <attr sel="button" th:if="${#authorization.expression('isAuthenticated()')} and ${noticeComment.userId} == ${#authentication.name}" />
+        </attr>
+      </attr>
+    </attr>
+
+    <attr sel="#pagination">
+      <attr sel="ul">
+        <attr sel="li[0]/a"
+              th:href="*{id} - 1 <= 0 ? '#' : |/notices/*{id - 1}|"
+              th:class="'page-link' + (*{id} - 1 <= 0 ? ' disabled' : '')"
+        />
+        <attr sel="li[1]/a"
+              th:href="*{id} + 1 > ${totalCount} ? '#' : |/notices/*{id + 1}|"
+              th:class="'page-link' + (*{id} + 1 > ${totalCount} ? ' disabled' : '')"
+        />
+      </attr>
+    </attr>
+  </attr>
+</thlogic>
