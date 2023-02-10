@@ -24,6 +24,9 @@ spring:
   data.rest:
     base-path: /api
     detection-strategy: annotated
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
 
 
 
