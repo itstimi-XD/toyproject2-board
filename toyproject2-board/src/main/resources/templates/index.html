@@ -17,8 +17,17 @@
     <h3>
         이름 : <span th:text=" ${session.loginInfo.getMemberName()}"></span>
     </h3>
-    <a href="/member/logout">로그아웃</a>
+    <form action="/member/logout" method="post">
+        <input type="submit" value="로그아웃">
+    </form>
     <a href="/member/list">회원목록</a>
+<script>
+    const urlParams = new URL(location.href).searchParams;
+
+    const name = urlParams.get('msg');
+    if (name != null)
+    alert(name);
+</script>
 </div>
 </body>
 </html>

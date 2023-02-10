@@ -27,18 +27,20 @@ public class MemberController {
         log.info("login get.............");
     }
     @PostMapping("/login")
-    public String loginPost(@ModelAttribute MemberDTO memberDTO, HttpSession session, RedirectAttributes ra) {
+    public String loginPost(@ModelAttribute MemberDTO memberDTO, HttpSession session
+            , RedirectAttributes ra) {
         MemberDTO loginResult = memberService.login(memberDTO);
         if(loginResult != null) {
             session.setAttribute("loginInfo",loginResult);
+            ra.addAttribute("msg", "login 성공!!!!!");
             return "redirect:/";
         }else {
-            session.setAttribute("msg", "login 실패!!!!!");
+            ra.addAttribute("msg", "login 실패!!!!!");
             return "redirect:/member/login";
         }
     }
 
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.removeAttribute("loginInfo");
         session.invalidate();
@@ -80,6 +82,12 @@ public class MemberController {
     public String detail(@PathVariable Long id, Model model) {
         MemberDTO memberDTO = memberService.findById(id);
         model.addAttribute("member", memberDTO);
-        return "/member/list";
+        return "/member/read";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id,RedirectAttributes ra) {
+        memberService.delete(id);
+        ra.addFlashAttribute("msg","성공!!!!");
+        return "redirect:/member/list";
     }
 }

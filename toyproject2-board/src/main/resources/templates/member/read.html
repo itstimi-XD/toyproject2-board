@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>read.html</h1>
+<h3>~~~~~id~~~~~~</h3>
+<h2 th:text="${member.id}"></h2>
+<h2>~~~~~~~~~memberId~~~~~~~~</h2>
+<h2 th:text="${member.memberId}"></h2>
+<h3>~~~~~~~~~memberEmail~~~~~~~~~</h3>
+<h2 th:text="${member.memberEmail}"></h2>
+<h3>~~~~~~~~이름~~~~~~~~~</h3>
+<h2 th:text="${member.memberName}"></h2>
+<h4><a th:href="@{/member/list}">목록</a>
+</html>
