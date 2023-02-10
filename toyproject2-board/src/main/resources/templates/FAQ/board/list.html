@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<h1>FAQ</h1>
+<form>
+    <div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="submit" class="btn btn-primary">전체</button>
+            <button type="submit" class="btn btn-primary" name="type" value="결제/취소">결제/취소</button>
+            <button type="submit" class="btn btn-primary" name="type" value="이용문의">이용문의</button>
+            <button type="submit" class="btn btn-primary" name="type" value="기타문의">기타문의</button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <ul>
+        <th:block th:each="dto:${DTOList}">
+            <div th:if="${dto.FAQtype}==${type}">
+                <p>
+                    <button class="btn btn-light" type="button" data-bs-toggle="collapse" th:attr="data-bs-target='#'+${dto.tno}" aria-expanded="false" aria-controls="[[${dto.tno}]]">
+
+                        <li>([[${dto.FAQtype}]])  [[${dto.title}]]</li>
+                    </button>
+                </p>
+                <div class="collapse" th:attr="id=${dto.tno}">
+                    <div class="card card-body">
+                        <li>내용 : [[${dto.content}]]</li>
+                        <li>작성자 : [[${dto.id}]]</li>
+                        <a th:href="|@{/FAQ/board/modify}?tno=${dto.tno}|" class="btn btn-secondary">수정</a>
+                    </div>
+                </div>
+            </div>
+            <div th:unless="${type}">
+                <p>
+                    <button class="btn btn-light" type="button" data-bs-toggle="collapse" th:attr="data-bs-target='#'+${dto.tno}" aria-expanded="false" aria-controls="[[${dto.tno}]]">
+
+                        <li>([[${dto.FAQtype}]])  [[${dto.title}]]</li>
+                    </button>
+                </p>
+                <div class="collapse" th:attr="id=${dto.tno}">
+                    <div class="card card-body">
+                        <li>내용 : [[${dto.content}]]</li>
+                        <li>작성자 : [[${dto.id}]]</li>
+                        <div class="my-4">
+                            <a th:href="|@{/FAQ/board/modify}?tno=${dto.tno}|" class="btn btn-secondary">수정</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </ul>
+</div>
+
+<div class="my-4">
+        <a href="/FAQ/board/register" class="btn btn-primary">등록하기</a>
+</div>
+
+<script layout:fragment="script" th:inline="javascript">
+    const result= [[${result}]]
+    if(result){
+        alert(result)
+    }
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
