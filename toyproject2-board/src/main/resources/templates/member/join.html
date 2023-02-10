@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <!-- jquery cdn -->
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<form action="/member/join" method="post">
+    <label>아이디 :
+        <input type="text" name="memberId" value=""/>
+    </label><br/>
+    <label>이메일 :
+        <input type="email" name="memberEmail" id="memberEmail" maxlength="20" value=""/>
+        <input type="button"  id="emailCheck" value="체크"/>
+    </label> <br/>
+    <label>비밀번호 :
+        <input type="password" name="memberPassword" value=""/>
+    </label> <br/>
+    <!--  비밀번호확인 : <input type="password" value=""/> <br/>-->
+    <label>이름 :
+        <input type="text" name="memberName" value=""/>
+    </label> <br/>
+    <input type="submit" value="회원가입">
+</form>
+<script th:inline="javascript">
+    const regexEmail = function (email) {
+        const target = email;
+        email = email.value;
+        const regExp = new RegExp(/^([0-9a-zA-Z_-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/);
+        let message = "";
+        let maxlength = target.getAttribute('maxlength');
+        if (email.length == 0) {
+            message = "이메일 입력 바람";
+        }
+        else if (!regExp.test(email)) {
+            message = "이메일 형식이 아니래요 재입력 바람";
+        }
+        else if (email.length > maxlength) {
+            message = "20자 넘음";
+        }
+        console.log(message);
+        target.focus();
+        return message;
+    }
+
+    const emailCheck = function(ev) {
+        ev.preventDefault();
+        const email = document.getElementById("memberEmail");
+        const message = regexEmail(email);
+        alert(message.length)
+        if (message.length > 0) {
+            alert(message);
+            return;
+        }
+        const checkResult = document.getElementById("check-result");
+        console.log("입력값: ", email.value);
+        $.ajax({
+            // 요청방식: post, url: "email-check", 데이터: 이메일
+            type: "post",
+            url: "/member/email-check",
+            data: {
+                "memberEmail": email.value
+            },
+            success: function(res) {
+                console.log("요청성공", res);
+                if (res == "OK") {
+                    console.log("사용가능한 이메일");
+                    alert("사용가능한 이메일");
+                } else {
+                    console.log("이미 사용중인 이메일");
+                    alert("이미 사용중인 이메일");
+                    email.value = "";
+                    return;
+                }
+            },
+            error: function(err) {
+                console.log("에러발생", err);
+            }
+        });
+    }
+    document.getElementById('emailCheck').addEventListener('click', emailCheck);
+</script>
+</body>
+</html>
