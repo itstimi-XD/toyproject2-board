@@ -1,10 +1,10 @@
-package fastcampus.toyproject2board;
+package fastcampus.toyproject2board.noticeBoard;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Toyproject2BoardApplicationTests {
+class FastCampusProjectBoardApplicationTests {
 
     @Test
     void contextLoads() {
